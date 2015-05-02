@@ -3,29 +3,29 @@
 // var Weather_Url = api.openweathermap.org/data/2.5/forecast/city?id=idhere&APPID=
 
 function time(){
-    var dt       = document.querySelector('.cur_date');
-    var da       = document.querySelector('.cur_day');
-    var ho       = document.querySelector('.hours');
-    var mi       = document.querySelector('.minutes');
-    var se       = document.querySelector('.seconds');
+    var dt          = document.querySelector('.cur_date');
+    var da          = document.querySelector('.cur_day');
+    var ho          = document.querySelector('.hours');
+    var mi          = document.querySelector('.minutes');
+    var se          = document.querySelector('.seconds');
 
-    var d       = new Date();
+    var d           = new Date();
 
-    var hours   = d.getHours();
-    var minutes = d.getMinutes();
-    var seconds = d.getSeconds();
+    var hours       = d.getHours();
+    var minutes     = d.getMinutes();
+    var seconds     = d.getSeconds();
 
-    var day     = d.getDay();
-    var date    = d.getDate();
-    var month   = d.getMonth();
-    var year    = d.getFullYear();
+    var day         = d.getDay();
+    var date        = d.getDate();
+    var month       = d.getMonth();
+    var year        = d.getFullYear();
 
-    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var days        = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var months      = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+    var cur_day     = d.getDate();
+    var cur_month   = months[month];
     var cur_weekday = document.createTextNode(days[day]);
-    var cur_day = d.getDate();
-    var cur_month = months[month];
 
 
     function zeros(target){
@@ -38,16 +38,16 @@ function time(){
         return t;
     }
 
-    var cur_ho = zeros(hours);
-    var cur_min  = zeros(minutes);
-    var cur_sec  = zeros(seconds);
+    var cur_ho     = zeros(hours);
+    var cur_min    = zeros(minutes);
+    var cur_sec    = zeros(seconds);
 
 
-    var cur_hour = document.createTextNode(cur_ho);
+    var cur_hour   = document.createTextNode(cur_ho);
     var cur_minute = document.createTextNode(cur_min);
     var cur_second = document.createTextNode(cur_sec);
 
-    var cur_date = document.createTextNode(cur_month + ' ' + cur_day + ', ' + year);
+    var cur_date   = document.createTextNode(cur_month + ' ' + cur_day + ', ' + year);
 
 
     // Clear the Clock

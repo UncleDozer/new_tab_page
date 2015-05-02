@@ -4,87 +4,90 @@ $fg: #2EB9FF;
 $red: #FF2E4C;
 $time-font: "Office Code Pro";
 $date-font: $time-font;
-$link-font: "Monofur for Powerline";
+$link-font: $time-font;
 $link-size: 1.5em;
 $time-size: 15em;
 $date-size: 3em;
 
 body{
-	background-color: $bg;
-	color: $fg;
-	text-align: center;
+    background-color: $bg;
+    color: $fg;
+    text-align: center;
 }
 
 .time{
-	display: block;
-	width: 100%;
-	//margin-left: auto;
-	//margin-right: auto;
-	margin-top: 5%;
-	font-size: $time-size;
-	font-weight: bolder;
-	text-shadow: 0px 15px rgba(0,0,0,.3);
-	font-family: $time-font;
-	text-align: center;
+    display: block;
+    width: 100%;
+    //margin-left: auto;
+    //margin-right: auto;
+    margin-top: 5%;
+    font-size: $time-size;
+    font-weight: bolder;
+    text-shadow: 0px 15px rgba(0,0,0,.3);
+    font-family: $time-font;
+    text-align: center;
 
-	span{
-		display: inline-flex;
-		height: 100%;
-		width: 1.4em;
-		max-width: 1.4em;
-		text-align: initial;
-	}
+    span{
+        display: inline-flex;
+        height: 100%;
+        width: 1.4em;
+        max-width: 1.4em;
+        text-align: initial;
+    }
 }
 
 .date{
-	font-size: $date-size;
-	text-align: center;
-	text-shadow: 3px 3px rgba(0,0,0,.3);
-	font-weight: bold;
-	font-family: $date-font;
+    font-size: $date-size;
+    text-align: center;
+    text-shadow: 3px 3px rgba(0,0,0,.3);
+    font-weight: bold;
+    font-family: $date-font;
 }
 
 .block{
-	display: block;
+    display: block;
 }
 
 .links{
-	display: inline-block;
-	text-align: initial;
-	ul{
-		list-style: none;
-		display: inline-block;
-		vertical-align: top;
-	}
+    display: block;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    ul{
+        text-align: initial;
+        list-style: none;
+        display: inline-block;
+        vertical-align: top;
+    }
 
-	.linkitem{
-		vertical-align: top;
-		display: inline-block;
-		margin: 35px;
-	}
+    .linkitem{
+        vertical-align: top;
+        display: inline-block;
+        margin: 35px;
+    }
 
-	a{
-		color: $red;
-		text-decoration: none;
-		border: none;
-		font-family: $link-font;
-		font-size: $link-size;
-		text-shadow: 4px 3px rgba(0,0,0,.3);
-		font-weight: bold;
-	}
+    a{
+        color: $red;
+        text-decoration: none;
+        border: none;
+        font-family: $link-font;
+        font-size: $link-size;
+        text-shadow: 4px 3px rgba(0,0,0,.3);
+        font-weight: bold;
+    }
 }
 
 .curspo > *{
-	cursor: default;
+    cursor: default;
 }
 
 ul.sublink{
-	padding-left: 5px;
-	display: block;
-	list-style: none;
+    padding-left: 5px;
+    display: block;
+    list-style: none;
 
-	a{
-		font-weight: normal;
-		text-shadow: 3px 2px rgba(0,0,0,.3);
-	}
+    a{
+        font-weight: normal;
+        text-shadow: 3px 2px rgba(0,0,0,.3);
+    }
 }
