@@ -69,5 +69,5 @@ function time(){
     da.appendChild(cur_weekday);
 
 }
-
+time();
 var interval = window.setInterval(time,250);

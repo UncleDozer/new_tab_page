@@ -1,79 +1,78 @@
-//$bg: #262E38;
-$bg: #1a1a1a;
-$fg: #2EB9FF;
-$red: #FF2E4C;
-$time-font: "Office Code Pro";
-$date-font: $time-font;
-$link-font: $time-font;
-$link-size: 1.5em;
-$time-size: 15em;
-$date-size: 3em;
+$bg        : #1a1a1a;
+$fg        : #2EB9FF;
+$red       : #FF2E4C;
+$green     : #A1FF7A;
+$time-font : "Office Code Pro", "Lato", "Arial", sans-serif;
+$date-font : $time-font;
+$link-font : $time-font;
+$link-size : 1.5em;
+$time-size : 15em;
+$date-size : 3em;
+
+*{
+    box-sizing: border-box;
+}
 
 body{
-    background-color: $bg;
-    color: $fg;
-    text-align: center;
+    background-color : $bg;
+    color            : $fg;
+    text-align       : center;
 }
 
 .time{
-    display: block;
-    width: 100%;
-    //margin-left: auto;
-    //margin-right: auto;
-    margin-top: 5%;
-    font-size: $time-size;
-    font-weight: bolder;
-    text-shadow: 0px 15px rgba(0,0,0,.3);
-    font-family: $time-font;
-    text-align: center;
+    display     : block;
+    width       : 100%;
+    margin-top  : 5%;
+    font-size   : $time-size;
+    font-weight : bolder;
+    text-shadow : 0px 15px rgba(0,0,0,.3);
+    font-family : $time-font;
+    text-align  : center;
 
     span{
-        display: inline-flex;
-        height: 100%;
-        width: 1.4em;
-        max-width: 1.4em;
-        text-align: initial;
+        display    : inline-flex;
+        width      : 1.4em;
+        max-width  : 1.4em;
+        text-align : initial;
     }
 }
 
 .date{
-    font-size: $date-size;
-    text-align: center;
-    text-shadow: 3px 3px rgba(0,0,0,.3);
-    font-weight: bold;
-    font-family: $date-font;
+    font-size   : $date-size;
+    text-align  : center;
+    text-shadow : 3px 3px rgba(0,0,0,.3);
+    font-weight : bold;
+    font-family : $date-font;
 }
 
 .block{
-    display: block;
+    display : block;
 }
 
 .links{
-    display: block;
-    text-align: center;
-    margin-right: auto;
-    margin-left: auto;
-    ul{
-        text-align: initial;
-        list-style: none;
-        display: inline-block;
-        vertical-align: top;
-    }
+    display    : block;
+    text-align : center;
 
     .linkitem{
-        vertical-align: top;
-        display: inline-block;
-        margin: 35px;
+        display        : inline-block;
+        vertical-align : top;
+        margin         : 25px auto;
+        padding        : 0 50px 0px 0px;
+        text-align     : initial;
     }
 
     a{
-        color: $red;
-        text-decoration: none;
-        border: none;
-        font-family: $link-font;
-        font-size: $link-size;
-        text-shadow: 4px 3px rgba(0,0,0,.3);
-        font-weight: bold;
+        color           : $red;
+        text-decoration : none;
+        font-family     : $link-font;
+        font-size       : $link-size;
+        text-shadow     : 4px 3px rgba(0,0,0,.3);
+        font-weight     : bold;
+        transition      : color .25s;
+
+        &:hover{
+            color       : green;
+        }
     }
 }
 
@@ -82,12 +81,10 @@ body{
 }
 
 ul.sublink{
-    padding-left: 5px;
-    display: block;
-    list-style: none;
+    padding-left : 20px;
+    list-style   : none;
 
     a{
-        font-weight: normal;
-        text-shadow: 3px 2px rgba(0,0,0,.3);
+        font-weight : normal;
     }
 }

@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box; }
+
 body {
   background-color: #1a1a1a;
   color: #2EB9FF;
@@ -10,11 +13,10 @@ body {
   font-size: 15em;
   font-weight: bolder;
   text-shadow: 0px 15px rgba(0, 0, 0, 0.3);
-  font-family: "Office Code Pro";
+  font-family: "Office Code Pro", "Lato", "Arial", sans-serif;
   text-align: center; }
   .time span {
     display: inline-flex;
-    height: 100%;
     width: 1.4em;
     max-width: 1.4em;
     text-align: initial; }
@@ -24,41 +26,36 @@ body {
   text-align: center;
   text-shadow: 3px 3px rgba(0, 0, 0, 0.3);
   font-weight: bold;
-  font-family: "Office Code Pro"; }
+  font-family: "Office Code Pro", "Lato", "Arial", sans-serif; }
 
 .block {
   display: block; }
 
 .links {
   display: block;
-  text-align: center;
-  margin-right: auto;
-  margin-left: auto; }
-  .links ul {
-    text-align: initial;
-    list-style: none;
-    display: inline-block;
-    vertical-align: top; }
+  text-align: center; }
   .links .linkitem {
-    vertical-align: top;
     display: inline-block;
-    margin: 35px; }
+    vertical-align: top;
+    margin: 25px auto;
+    padding: 0 50px 0px 0px;
+    text-align: initial; }
   .links a {
     color: #FF2E4C;
     text-decoration: none;
-    border: none;
-    font-family: "Office Code Pro";
+    font-family: "Office Code Pro", "Lato", "Arial", sans-serif;
     font-size: 1.5em;
     text-shadow: 4px 3px rgba(0, 0, 0, 0.3);
-    font-weight: bold; }
+    font-weight: bold;
+    transition: color 0.25s; }
+    .links a:hover {
+      color: green; }
 
 .curspo > * {
   cursor: default; }
 
 ul.sublink {
-  padding-left: 5px;
-  display: block;
+  padding-left: 20px;
   list-style: none; }
   ul.sublink a {
-    font-weight: normal;
-    text-shadow: 3px 2px rgba(0, 0, 0, 0.3); }
+    font-weight: normal; }
