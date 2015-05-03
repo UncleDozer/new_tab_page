@@ -46,10 +46,7 @@ body {
     font-family: "Office Code Pro", "Lato", "Arial", sans-serif;
     font-size: 1.5em;
     text-shadow: 4px 3px rgba(0, 0, 0, 0.3);
-    font-weight: bold;
-    transition: color 0.25s; }
-    .links a:hover {
-      color: green; }
+    font-weight: bold; }
 
 .curspo > * {
   cursor: default; }
