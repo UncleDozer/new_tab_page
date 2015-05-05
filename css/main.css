@@ -19,7 +19,7 @@ body {
   text-align: center; }
   @media only screen and (max-width: 966px) {
     .time {
-      font-size: 7.5em; } }
+      font-size: 5em; } }
   @media only screen and (max-width: 760px) {
     .time {
       font-size: 6em; } }
@@ -49,6 +49,10 @@ body {
     margin: 25px auto;
     padding: 0 50px 0px 0px;
     text-align: initial; }
+    @media only screen and (max-width: 966px) {
+      .links .linkitem {
+        display: block;
+        text-align: center; } }
   .links a {
     color: #FF2E4C;
     text-decoration: none;
