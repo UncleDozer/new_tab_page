@@ -31,7 +31,7 @@ body{
     text-align  : center;
 
     @media only screen and (max-width: 966px){
-        font-size : $time-size / 2;
+        font-size : $time-size / 3;
     }
 
     @media only screen and (max-width: 760px){
@@ -68,6 +68,11 @@ body{
         margin         : 25px auto;
         padding        : 0 50px 0px 0px;
         text-align     : initial;
+
+        @media only screen and (max-width: 966px){
+            display: block;
+            text-align: center;
+        }
     }
 
     a{
