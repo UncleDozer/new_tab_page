@@ -9,17 +9,17 @@ $link-size : 1.5em;
 $time-size : 15em;
 $date-size : 3em;
 
-*{
+* {
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color : $bg;
     color            : $fg;
     text-align       : center;
 }
 
-.time{
+.time {
     display     : block;
     width       : 100%;
     margin-top  : 5%;
@@ -30,15 +30,15 @@ body{
     font-family : $time-font;
     text-align  : center;
 
-    @media only screen and (max-width: 966px){
-        font-size : $time-size / 3;
+    @media only screen and (max-width: 1200px) {
+        font-size : $time-size / 2;
     }
 
-    @media only screen and (max-width: 760px){
+    @media only screen and (max-width: 760px) {
         font-size : $time-size / 2.5;
     }
 
-    span{
+    span {
         display    : inline-flex;
         margin-left: auto; margin-right: auto;
         width      : 100% / 3;
@@ -46,7 +46,7 @@ body{
     }
 }
 
-.date{
+.date {
     font-size   : $date-size;
     text-align  : center;
     text-shadow : 3px 3px rgba(0,0,0,.3);
@@ -54,46 +54,53 @@ body{
     font-family : $date-font;
 }
 
-.block{
+.block {
     display : block;
 }
 
-.links{
+.links {
     display    : block;
     text-align : center;
 
-    .linkitem{
+    .linkitem {
         display        : inline-block;
         vertical-align : top;
         margin         : 25px auto;
         padding        : 0 50px 0px 0px;
         text-align     : initial;
 
-        @media only screen and (max-width: 966px){
+        @media only screen and (max-width: 966px) {
             display: block;
             text-align: center;
         }
     }
 
-    a{
+    a {
         color           : $red;
         text-decoration : none;
         font-family     : $link-font;
         font-size       : $link-size;
         text-shadow     : 4px 3px rgba(0,0,0,.3);
         font-weight     : bold;
+        transition      : .1s all;
+
+        &:hover, &:active, &:focus {
+            color: $fg;
+            border-bottom: 3px solid $fg;
+            transition: .25s color, .1s border;
+        }
     }
 }
 
-.curspo > *{
+.curspo > * {
     cursor: default;
 }
 
-ul.sublink{
+ul.sublink {
     padding-left : 20px;
     list-style   : none;
 
-    a{
+    a {
         font-weight : normal;
     }
 }
