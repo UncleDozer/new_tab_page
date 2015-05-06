@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box; }
 
+a {
+  outline: 0; }
+
 body {
   background-color: #1a1a1a;
   color: #2EB9FF;
@@ -42,6 +45,7 @@ body {
 
 .links {
   display: block;
+  margin-top: 75px;
   text-align: center; }
   .links .linkitem {
     display: inline-block;
@@ -59,8 +63,7 @@ body {
     font-family: "Office Code Pro", "Lato", "Arial", sans-serif;
     font-size: 1.5em;
     text-shadow: 4px 3px rgba(0, 0, 0, 0.3);
-    font-weight: bold;
-    transition: 0.1s all; }
+    font-weight: bold; }
     .links a:hover, .links a:active, .links a:focus {
       color: #2EB9FF;
       border-bottom: 3px solid #2EB9FF;

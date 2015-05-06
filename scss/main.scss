@@ -13,6 +13,10 @@ $date-size : 3em;
     box-sizing: border-box;
 }
 
+a {
+    outline: 0;
+}
+
 body {
     background-color : $bg;
     color            : $fg;
@@ -60,6 +64,7 @@ body {
 
 .links {
     display    : block;
+    margin-top : 75px;
     text-align : center;
 
     .linkitem {
@@ -82,7 +87,7 @@ body {
         font-size       : $link-size;
         text-shadow     : 4px 3px rgba(0,0,0,.3);
         font-weight     : bold;
-        transition      : .1s all;
+        // transition      : .1s all;
 
         &:hover, &:active, &:focus {
             color: $fg;
