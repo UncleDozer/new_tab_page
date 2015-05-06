@@ -18,15 +18,15 @@
     </div>
 
     <div class="date curspo">
-      <span class="block cur_day"></span>
-      <span class="block cur_date"></span>
+      <span class="cur_day"></span>
+      <span class="cur_date"></span>
     </div>
 
     <nav class="links">
-      <ul>
+      <ul class="link--list">
 
         <!-- Reddit-->
-        <li class="linkitem">
+        <li class="link--item">
           <a href="https://www.reddit.com">Reddit</a>
           <ul class='sublink'>
 
@@ -43,38 +43,48 @@
         </li>
 
         <!-- Facebook -->
-        <li class="linkitem">
+        <li class="link--item">
           <a href="https://www.facebook.com">Facebook</a>
         </li>
 
         <!-- Google Inbox -->
-        <li class="linkitem">
+        <li class="link--item">
           <a href="https://inbox.google.com">Google Inbox</a>
         </li>
 
         <!-- MDN -->
-        <li class="linkitem">
+        <li class="link--item">
           <a href="http://developer.mozilla.org">MDN</a>
         </li>
 
         <!-- LocalHost -->
-        <li class="linkitem">
+        <li class="link--item">
           <a href="http://localhost">LocalHost</a>
         </li>
 
 
         <!-- Github -->
-        <li class="linkitem">
+        <li class="link--item">
             <a href="https://github.com">Github</a>
         </li>
 
         <!-- Webtastic! -->
-        <li class="linkitem">
+        <li class="link--item">
           <a href="http://webtastic-development.net">Webtastic!</a>
         </li>
 
       </ul>
     </nav>
+
+        <label for="title-1">Title</label>
+        <input class="add--link-title" name="title-1"></input>
+
+        <label for="title-1">Address</label>
+        <input class="add--link-address" name="link-1"></input>
+
+        <button class="add--link-more" >Add More</button>
+        <button class="add--link-clear" >Clear</button>
+        <button class="add--link-submit" >Submit</button>
 
     <script src="js/main.js"></script>
 

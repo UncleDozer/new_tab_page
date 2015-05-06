@@ -6,18 +6,9 @@
 }}}*/
 
 /*
- * Openweathermap.org : Not yet implemented
- */
-
-// var opw_key = "b81aa5afc75936a3f6d29f911930ad55"
-// var city_id = "5301067"
-// var Weather_Url = api.openweathermap.org/data/2.5/forecast/city?id=idhere&APPID=
-
-
-
-/*
  * Quick and dirty time function
  * Updates every 250 milleseconds
+ * ----------------------{{{
  */
 
 function time() {
@@ -93,57 +84,127 @@ time();
 // Set the interval to check the time every .25 seconds
 var interval = window.setInterval( time, 250 );
 
-// TODO: Local Storage for saving custom links, colors, location, etc.
+// }}}
+
 
 /*
  * Default links: https://Webtastic-Development.com,
  *                https://Github.com/UncleDozer
+ * TODO: Local Storage for saving custom links, colors, location, etc.
  */
 
 // Get Properties or set Defaults
-function getProps(){
+var defaultLinks  = [
+                        Link( "Webtastic-Development", "https://Webtastic-Development.net" ),
+                        Link( "Github", "https://Github.com/UncleDozer" )
+                    ];
 
-    var defaultLinks = [
-                            Link( "Webtastic-Development", "https://webtastic-development.net" ),
-                            Link( "Github", "https://github.com/uncledozer" ),
-                       ];
+var defaultColors = [
+                        Color( "blue"  , "#2DB3F7", ".time, .date" ),
+                        Color( "red"   , "#F72D4A", ".link--item > a" ),
+                        Color( "black" , "#1A1A1A", ".body" )
+                    ];
 
-    var links;
-    var colors;
-    var fonts;
+var defaultFonts  = [
+                        Font( "Office Code Pro", "15rem"  , "bold"  , ".time" ),
+                        Font( "Office Code Pro", "3.75rem", "bold"  , ".date" ),
+                        Font( "Office Code Pro", "2.75rem", "bold"  , ".link--item a" ),
+                        Font( "Office Code Pro", "2.75rem", "normal", ".sublink a" )
+                    ];
 
-    function getProps( get, set, defaults ) {
+function setProps( prop, set, defaults ) {
 
-        var localItem = localStorage.getItem( get );
+    // var localItem = 
 
-        if ( localItem == null )
-            set = defaults;
-        else
-            set = localItem;
-    }
+    if ( localStorage.getItem( prop ) == null )
+        set = defaults;
+    else
+        set = localItem;
 
-    getProps( "colors", colors /*, defaultColors */ );
-    getProps( "links", links, defaultLinks );
-    getProps( "fonts", fonts /*, defaultFonts */ );
+    return set;
 }
 
-function setProps() {
+var links = [];
 
-    function Link( name, address ) {
-        this.name    = name;
+
+// function setDefaults() {
+    // var colors = setProps( "colors", colors, defaultColors );
+    // var links  = setProps( "links", links, defaultLinks );
+    // var fonts  = setProps( "fonts", fonts, defaultFonts );
+// }
+
+function getTextVal( target ){
+    return target.value();
+}
+
+function Link( name, address, sublink, parentLink ) {
+    if ( name == "" )
+        this.name = address;
+    else
+        this.name = name;
+
+    if ( address == "" )
+        this.address = name;
+    else
         this.address = address;
-    }
 
-    function Color( foreground, background, target ){
-        this.foreground = foreground;
-        this.background = background;
-        this.target     = target;
-    }
-
-    function Font( name, weight, style ){
-        this.name   = name;
-        this.weight = weight;
-        this.style  = style;
-    }
+    this.sublink = sublink;
+    if (sublink)
+        this.parentLink = parentLink;
 }
 
+function createLink( linkTarget ){
+    var parentContainer = document.querySelector( '.link--list' )
+
+    var container = document.createElement( 'li' );
+    container.setAttribute("class", "link--item");
+
+    var newLink = document.createElement( 'a' );
+    newLink.href = linkTarget.address;
+
+    var linkTitle = document.createTextNode(linkTarget.name);
+    newLink.appendChild(linkTitle);
+
+    container.appendChild(newLink);
+
+    parentContainer.appendChild(container);
+
+}
+
+function Color( name, color, target ){
+    this.name   = name;
+    this.color  = color;
+    this.target = target;
+}
+
+function Font( name, size, style, target ){
+    this.name   = name;
+    this.size  = size;
+    this.style  = style;
+}
+
+// Get Settings from inputs
+var newLinkButton = document.querySelector( '.add--link-submit' );
+
+newLinkButton.addEventListener( "click", addLink, false );
+
+function addLink(  ) {
+    var nameElement = document.querySelector( '[name="title-1"]' );
+    var addressElement = document.querySelector( '.add--link-address' );
+    var linkName = nameElement.value;
+    var linkAddress = addressElement.value;
+
+    var newlink = new Link( linkName, linkAddress );
+    createLink( newlink );
+
+    links.push( newlink );
+    saveLinkTest();
+}
+
+function saveLinkTest() {
+    localStorage.setItem( "Links", JSON.stringify(links) );
+    console.log( localStorage.getItem( "Links" ) );
+}
+
+var retrieved = localStorage.getItem( "Links" );
+console.log( JSON.parse( localStorage.getItem( retrieved ) ) );

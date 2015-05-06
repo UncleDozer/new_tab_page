@@ -1,67 +1,124 @@
+/*
+ * Global Variables / Reset
+ * ----------------------{{{
+ */
+/*
+ * Color Variables
+ * ----------------------{{{
+ */
+/*
+ * Time Variables
+ * ----------------------{{{
+ */
+/* Time Font Variables --------*/
+/* Time Style Variables --------*/
+/*
+ * Date Variables
+ * ----------------------{{{
+ */
+/*
+ * Link Variables
+ * ----------------------{{{
+ */
+/* Link font vars --------*/
+/* Sublink Variables --------*/
+/*
+ * Breakpoint Variables
+ * ----------------------{{{
+ */
+/*
+ * Global Styles
+ * ----------------------{{{
+ */
 * {
   box-sizing: border-box; }
 
+html {
+  font-size: 62.5%; }
+
 a {
-  outline: 0; }
+  outline: 0;
+  text-decoration: none; }
 
 body {
   background-color: #1a1a1a;
-  color: #2EB9FF;
   text-align: center; }
 
+/*
+ * Time Styles
+ * ----------------------{{{
+ */
 .time {
   display: block;
+  position: relative;
   width: 100%;
-  margin-top: 5%;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 15em;
+  margin: 4% auto 0 auto;
+  color: #2EB9FF;
+  font-size: 15rem;
   font-weight: bolder;
-  text-shadow: 0px 15px rgba(0, 0, 0, 0.3);
   font-family: "Office Code Pro", "Lato", "Arial", sans-serif;
+  text-shadow: 0px 15px rgba(0, 0, 0, 0.3);
   text-align: center; }
-  @media only screen and (max-width: 1200px) {
-    .time {
-      font-size: 7.5em; } }
-  @media only screen and (max-width: 760px) {
-    .time {
-      font-size: 6em; } }
   .time span {
+    /* Set as inline-flex so the clock size doesn't constantly
+         * change based on the size of the letters used */
     display: inline-flex;
     margin-left: auto;
     margin-right: auto;
     width: 100%/3;
     text-align: initial; }
+  @media only screen and (max-width: 1000px) {
+    .time {
+      font-size: 10rem; } }
+  @media only screen and (max-width: 760px) {
+    .time {
+      font-size: 6.52174rem; } }
 
+/*
+ * Date Styles
+ * ----------------------{{{
+ */
 .date {
-  font-size: 3em;
+  display: block;
+  position: relative;
+  color: #2EB9FF;
+  font-size: 3.75rem;
   text-align: center;
-  text-shadow: 3px 3px rgba(0, 0, 0, 0.3);
   font-weight: bold;
-  font-family: "Office Code Pro", "Lato", "Arial", sans-serif; }
+  font-family: "Office Code Pro", "Lato", "Arial", sans-serif;
+  text-shadow: 3px 3px rgba(0, 0, 0, 0.3); }
+  .date span {
+    display: block; }
+  @media only screen and (max-width: 1000px) {
+    .date {
+      font-size: 2.5rem; } }
+  @media only screen and (max-width: 760px) {
+    .date {
+      font-size: 2.5rem; } }
 
-.block {
-  display: block; }
-
+/*
+ * Link Styles
+ * ----------------------{{{
+ */
 .links {
   display: block;
-  margin-top: 75px;
+  margin-top: 50px;
   text-align: center; }
-  .links .linkitem {
+  .links .link--item {
     display: inline-block;
     vertical-align: top;
     margin: 25px auto;
     padding: 0 50px 0px 0px;
+    line-height: 2.2em;
     text-align: initial; }
-    @media only screen and (max-width: 966px) {
-      .links .linkitem {
+    @media only screen and (max-width: 760px) {
+      .links .link--item {
         display: block;
         text-align: center; } }
   .links a {
     color: #FF2E4C;
-    text-decoration: none;
     font-family: "Office Code Pro", "Lato", "Arial", sans-serif;
-    font-size: 1.5em;
+    font-size: 2.5em;
     text-shadow: 4px 3px rgba(0, 0, 0, 0.3);
     font-weight: bold; }
     .links a:hover, .links a:active, .links a:focus {
@@ -73,7 +130,7 @@ body {
   cursor: default; }
 
 ul.sublink {
-  padding-left: 20px;
-  list-style: none; }
+  list-style: none;
+  padding-left: 20px; }
   ul.sublink a {
     font-weight: normal; }
