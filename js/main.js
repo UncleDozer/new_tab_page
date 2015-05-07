@@ -93,118 +93,106 @@ var interval = window.setInterval( time, 250 );
  * TODO: Local Storage for saving custom links, colors, location, etc.
  */
 
-// Get Properties or set Defaults
-var defaultLinks  = [
-                        Link( "Webtastic-Development", "https://Webtastic-Development.net" ),
-                        Link( "Github", "https://Github.com/UncleDozer" )
-                    ];
 
-var defaultColors = [
-                        Color( "blue"  , "#2DB3F7", ".time, .date" ),
-                        Color( "red"   , "#F72D4A", ".link--item > a" ),
-                        Color( "black" , "#1A1A1A", ".body" )
-                    ];
+function linkProps(  ) {
 
-var defaultFonts  = [
-                        Font( "Office Code Pro", "15rem"  , "bold"  , ".time" ),
-                        Font( "Office Code Pro", "3.75rem", "bold"  , ".date" ),
-                        Font( "Office Code Pro", "2.75rem", "bold"  , ".link--item a" ),
-                        Font( "Office Code Pro", "2.75rem", "normal", ".sublink a" )
-                    ];
+    function Link( name, address, sublink, parentLink ) {
+        if ( name == "" )
+            this.name = address;
+        else
+            this.name = name;
 
-function setProps( prop, set, defaults ) {
+        if ( address == "" )
+            this.address = name;
+        else
+            this.address = address;
 
-    // var localItem = 
+        this.sublink = sublink;
+        if (sublink)
+            this.parentLink = parentLink;
+    }
 
-    if ( localStorage.getItem( prop ) == null )
-        set = defaults;
-    else
-        set = localItem;
+    function setLinks( ) {
+        // Get Properties or set Defaults
+        var defaultLinks  = [
+            Link( "Webtastic-Development", "https://Webtastic-Development.net" ),
+            Link( "Github", "https://Github.com/UncleDozer" )
+        ];
 
-    return set;
+    }
+
+    function getTextVal( target ){
+        return target.value();
+    }
+
+    /* var links = defaultLinks; */
+
+    function createLink( linkTarget ){
+        var parentContainer = document.querySelector( '.link--list' )
+
+        var container = document.createElement( 'li' );
+        container.setAttribute("class", "link--item");
+
+        var newLink = document.createElement( 'a' );
+        newLink.href = linkTarget.address;
+
+        var linkTitle = document.createTextNode(linkTarget.name);
+        newLink.appendChild(linkTitle);
+
+        container.appendChild(newLink);
+        parentContainer.appendChild(container);
+    }
+
+    // Get Settings from inputs
+    var newLinkButton = document.querySelector( '.add--link-submit' );
+
+    newLinkButton.addEventListener( "click", addNewLink, false );
+
+    function addLink( name, address ) {
+        var linkName = name;
+        var linkAddress = address;
+
+        var newlink = new Link( linkName, linkAddress );
+        createLink( newlink );
+        links.push( newlink );
+        localStorage.setItem( "Links", JSON.stringify(links) );
+    }
+
+    function addNewLink(  ) {
+        var nameElement = document.querySelector( '[name="title-1"]' );
+        var addressElement = document.querySelector( '.add--link-address' );
+
+        var linkName = nameElement.value;
+        var linkAddress = addressElement.value;
+
+        localStorage.setItem( "Links", undefined );
+        addLink( linkName, linkAddress );
+    }
 }
 
-var links = [];
-
-
-// function setDefaults() {
-    // var colors = setProps( "colors", colors, defaultColors );
-    // var links  = setProps( "links", links, defaultLinks );
-    // var fonts  = setProps( "fonts", fonts, defaultFonts );
-// }
-
-function getTextVal( target ){
-    return target.value();
-}
-
-function Link( name, address, sublink, parentLink ) {
-    if ( name == "" )
-        this.name = address;
-    else
-        this.name = name;
-
-    if ( address == "" )
-        this.address = name;
-    else
-        this.address = address;
-
-    this.sublink = sublink;
-    if (sublink)
-        this.parentLink = parentLink;
-}
-
-function createLink( linkTarget ){
-    var parentContainer = document.querySelector( '.link--list' )
-
-    var container = document.createElement( 'li' );
-    container.setAttribute("class", "link--item");
-
-    var newLink = document.createElement( 'a' );
-    newLink.href = linkTarget.address;
-
-    var linkTitle = document.createTextNode(linkTarget.name);
-    newLink.appendChild(linkTitle);
-
-    container.appendChild(newLink);
-
-    parentContainer.appendChild(container);
-
-}
-
-function Color( name, color, target ){
-    this.name   = name;
-    this.color  = color;
-    this.target = target;
-}
-
-function Font( name, size, style, target ){
-    this.name   = name;
-    this.size  = size;
-    this.style  = style;
-}
-
-// Get Settings from inputs
-var newLinkButton = document.querySelector( '.add--link-submit' );
-
-newLinkButton.addEventListener( "click", addLink, false );
-
-function addLink(  ) {
-    var nameElement = document.querySelector( '[name="title-1"]' );
-    var addressElement = document.querySelector( '.add--link-address' );
-    var linkName = nameElement.value;
-    var linkAddress = addressElement.value;
-
-    var newlink = new Link( linkName, linkAddress );
-    createLink( newlink );
-
-    links.push( newlink );
-    saveLinkTest();
-}
-
-function saveLinkTest() {
-    localStorage.setItem( "Links", JSON.stringify(links) );
-    console.log( localStorage.getItem( "Links" ) );
-}
-
-var retrieved = localStorage.getItem( "Links" );
-console.log( JSON.parse( localStorage.getItem( retrieved ) ) );
+/*
+ * var defaultColors = [
+ *                         Color( "blue"  , "#2DB3F7", ".time, .date" ),
+ *                         Color( "red"   , "#F72D4A", ".link--item > a" ),
+ *                         Color( "black" , "#1A1A1A", ".body" )
+ *                     ];
+ *
+ * var defaultFonts  = [
+ *                         Font( "Office Code Pro", "15rem"  , "bold"  , ".time" ),
+ *                         Font( "Office Code Pro", "3.75rem", "bold"  , ".date" ),
+ *                         Font( "Office Code Pro", "2.75rem", "bold"  , ".link--item a" ),
+ *                         Font( "Office Code Pro", "2.75rem", "normal", ".sublink a" )
+ *                     ];
+ *
+ * function Color( name, color, target ){
+ *     this.name   = name;
+ *     this.color  = color;
+ *     this.target = target;
+ * }
+ *
+ * function Font( name, size, style, target ){
+ *     this.name   = name;
+ *     this.size   = size;
+ *     this.style  = style;
+ * }
+ */
