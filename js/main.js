@@ -88,47 +88,17 @@ var interval = window.setInterval( time, 250 );
 
 
 /*
- * Default links: https://Webtastic-Development.com,
- *                https://Github.com/UncleDozer
+ * LocalStorage for settings
  * TODO: Local Storage for saving custom links, colors, location, etc.
  */
 
+window.NewTab = {};
 
-function linkProps(  ) {
+NewTab.currentLinks = [];
 
-    function Link( name, address, sublink, parentLink ) {
-        if ( name == "" )
-            this.name = address;
-        else
-            this.name = name;
-
-        if ( address == "" )
-            this.address = name;
-        else
-            this.address = address;
-
-        this.sublink = sublink;
-        if (sublink)
-            this.parentLink = parentLink;
-    }
-
-    function setLinks( ) {
-        // Get Properties or set Defaults
-        var defaultLinks  = [
-            Link( "Webtastic-Development", "https://Webtastic-Development.net" ),
-            Link( "Github", "https://Github.com/UncleDozer" )
-        ];
-
-    }
-
-    function getTextVal( target ){
-        return target.value();
-    }
-
-    /* var links = defaultLinks; */
-
+NewTab.targetLinks = function( Targets ) {
     function createLink( linkTarget ){
-        var parentContainer = document.querySelector( '.link--list' )
+        var parentContainer = document.querySelector( '.link--list' );
 
         var container = document.createElement( 'li' );
         container.setAttribute("class", "link--item");
@@ -143,32 +113,77 @@ function linkProps(  ) {
         parentContainer.appendChild(container);
     }
 
-    // Get Settings from inputs
-    var newLinkButton = document.querySelector( '.add--link-submit' );
-
-    newLinkButton.addEventListener( "click", addNewLink, false );
-
-    function addLink( name, address ) {
-        var linkName = name;
-        var linkAddress = address;
-
-        var newlink = new Link( linkName, linkAddress );
-        createLink( newlink );
-        links.push( newlink );
-        localStorage.setItem( "Links", JSON.stringify(links) );
-    }
-
-    function addNewLink(  ) {
-        var nameElement = document.querySelector( '[name="title-1"]' );
-        var addressElement = document.querySelector( '.add--link-address' );
-
-        var linkName = nameElement.value;
-        var linkAddress = addressElement.value;
-
-        localStorage.setItem( "Links", undefined );
-        addLink( linkName, linkAddress );
+    if ( Targets == NewTab.currentLinks ) {
+        for ( var i = 0; i < Targets.length; i++ ) {
+            createLink( Targets[ i ] );
+        }
+    } else if ( Targets.name !== undefined & Targets.address !== undefined ) {
+        createLink( Targets );
     }
 }
+
+
+NewTab.Link = function( name, address ) {
+    if ( name == "" )
+        this.name = address;
+    else
+        this.name = name;
+
+    if ( address == "" )
+        this.address = name;
+    else
+        this.address = address;
+}
+
+NewTab.renderLinks = function( setDefaults ) {
+    var storedLinks = localStorage[ "links" ];
+    if ( storedLinks != undefined ) {
+        NewTab.currentLinks = JSON.parse( storedLinks );
+        NewTab.targetLinks( NewTab.currentLinks );
+    } else {
+        NewTab.currentLinks = NewTab.defaultLinks;
+        NewTab.targetLinks( NewTab.defaultLinks );
+    }
+}
+
+NewTab.saveLinks = function(  ) {
+    localStorage[ "links" ] = JSON.stringify( NewTab.currentLinks );
+}
+
+NewTab.defaultLinks    = [];
+NewTab.defaultLinks[0] = new NewTab.Link( "Webtastic-Development", "https://Webtastic-Development.net" );
+NewTab.defaultLinks[1] = new NewTab.Link( "Github", "https://Github.com/UncleDozer" );
+
+linkButton = document.querySelector( ".add--link-submit" );
+linkButton.addEventListener( "click", function(){
+    NewTab.targetLinks( "input" );
+    console.log( "CLICKED" );
+
+    var nameElement = document.querySelector( '[name="title-1"]' );
+    var addressElement = document.querySelector( '.add--link-address' );
+
+    var inputLink = new NewTab.Link( nameElement.value, addressElement.value );
+
+    NewTab.targetLinks( inputLink );
+    NewTab.currentLinks.push( inputLink );
+    NewTab.saveLinks();
+} );
+
+NewTab.clearLinks = function( target ) {
+    var removalName = document.querySelector( target ).innerHTML;
+    for ( var i = 0; i > NewTab.currentLinks; i++ ) {
+        if (NewTab.currentLinks[ i ].name == removalName) {
+            NewTab.currentLinks.splice(i, 1);
+        }
+    }
+}
+
+
+NewTab.init = function() {
+    NewTab.renderLinks(  );
+}
+
+window.onload = NewTab.init;
 
 /*
  * var defaultColors = [
