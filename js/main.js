@@ -4,6 +4,7 @@
  * Github  : https://github.com/uncledozer
  *
 }}}*/
+var dev = true;
 
 /*
  * Quick and dirty time function
@@ -94,18 +95,33 @@ var interval = window.setInterval( time, 250 );
 
 window.NewTab = {};
 
+/*
+ * Links
+ * {{{
+ */
+
+// Stores all links currently displayed on the page
 NewTab.currentLinks = [];
 
+// Targeted link objects are created as new html objects
 NewTab.targetLinks = function( Targets ) {
+
+    // Define and create Link elements
     function createLink( linkTarget ){
+        // Where to insert
         var parentContainer = document.querySelector( '.link--list' );
 
+        // Containing element
         var container = document.createElement( 'li' );
-        container.setAttribute("class", "link--item");
+        container.setAttribute( "class", "link--item" );
+        // Set ID for easy selection
+        container.setAttribute( "id", linkTarget.name );
 
+        // Anchor element with target address
         var newLink = document.createElement( 'a' );
         newLink.href = linkTarget.address;
 
+        // Define innerhtml using target name
         var linkTitle = document.createTextNode(linkTarget.name);
         newLink.appendChild(linkTitle);
 
@@ -113,31 +129,36 @@ NewTab.targetLinks = function( Targets ) {
         parentContainer.appendChild(container);
     }
 
+    // Render all cached links
     if ( Targets == NewTab.currentLinks ) {
         for ( var i = 0; i < Targets.length; i++ ) {
             createLink( Targets[ i ] );
         }
     } else if ( Targets.name !== undefined & Targets.address !== undefined ) {
+        // Create Link if at least one property is defined
         createLink( Targets );
     }
 }
 
-
+// Link object Constructor
 NewTab.Link = function( name, address ) {
-    if ( name == "" )
+    // If the name is undefined, use the address as the name
+    if ( name == "" || address == undefined )
         this.name = address;
     else
         this.name = name;
 
-    if ( address == "" )
+    // and vise versa
+    if ( address == "" || address == undefined )
         this.address = name;
     else
         this.address = address;
 }
 
+// Renders links from localStorage or loads defaults if localStorage is empty
 NewTab.renderLinks = function( setDefaults ) {
     var storedLinks = localStorage[ "links" ];
-    if ( storedLinks != undefined ) {
+    if ( storedLinks !== "undefined" ) {
         NewTab.currentLinks = JSON.parse( storedLinks );
         NewTab.targetLinks( NewTab.currentLinks );
     } else {
@@ -146,41 +167,113 @@ NewTab.renderLinks = function( setDefaults ) {
     }
 }
 
+// Save currentLinks to localStorage
 NewTab.saveLinks = function(  ) {
     localStorage[ "links" ] = JSON.stringify( NewTab.currentLinks );
 }
 
+// Set defaultLinks
 NewTab.defaultLinks    = [];
 NewTab.defaultLinks[0] = new NewTab.Link( "Webtastic-Development", "https://Webtastic-Development.net" );
 NewTab.defaultLinks[1] = new NewTab.Link( "Github", "https://Github.com/UncleDozer" );
 
-linkButton = document.querySelector( ".add--link-submit" );
-linkButton.addEventListener( "click", function(){
-    NewTab.targetLinks( "input" );
-    console.log( "CLICKED" );
-
-    var nameElement = document.querySelector( '[name="title-1"]' );
-    var addressElement = document.querySelector( '.add--link-address' );
-
-    var inputLink = new NewTab.Link( nameElement.value, addressElement.value );
-
-    NewTab.targetLinks( inputLink );
-    NewTab.currentLinks.push( inputLink );
-    NewTab.saveLinks();
-} );
-
+// Clear targeted links from currentLinks, update localstorage, render new links
 NewTab.clearLinks = function( target ) {
-    var removalName = document.querySelector( target ).innerHTML;
+    var removalName;
+
+    // Get anchor's name from html
+    for ( var i = 0; i > target.length; i++ ) {
+        removalName = document.querySelector( target[ i ] ).innerHTML;
+    }
+
+    // Remove target from currentLinks, update localstorage, render new links
     for ( var i = 0; i > NewTab.currentLinks; i++ ) {
         if (NewTab.currentLinks[ i ].name == removalName) {
             NewTab.currentLinks.splice(i, 1);
+            NewTab.saveLinks();
+            NewTab.renderLinks();
         }
     }
 }
 
+NewTab.newLinkInput = function( ) {
+
+    var submit = document.createElement( "button" );
+    var submitHtml = document.createTextNode( "submit" );
+    // submit.setAttribute( "type", "button" );
+    submit.setAttribute( "class", "add--link-submit" );
+    submit.appendChild( submitHtml );
+
+    // Where to insert
+    var parentContainer = document.querySelector( ".link--list" );
+
+    // Containing element
+    var container = document.createElement( "li" );
+    container.setAttribute( "class", "link--item" );
+
+    // One input for name and address
+    var formContainer = document.createElement( "form" );
+    var nameLabel = document.createElement( "label" );
+    var nameInput = document.createElement( "input" );
+    var nameText = document.createTextNode( "Name" );
+    nameInput.setAttribute( "class", "add--link-name" );
+    nameInput.setAttribute( "name", "link-name" );
+    nameLabel.setAttribute( "for", nameInput.getAttribute( "name" ) );
+    nameLabel.appendChild( nameText );
+
+    var addressLabel = document.createElement( "label" );
+    var addressInput = document.createElement( "input" );
+    var addressText = document.createTextNode( "Address" );
+    addressInput.setAttribute( "class", "add--link-address" );
+    addressInput.setAttribute( "name", "link-name" );
+    addressLabel.setAttribute( "for", addressInput.getAttribute( "name" ) );
+    addressLabel.appendChild( addressText );
+
+    formContainer.appendChild( nameInput );
+    formContainer.appendChild( addressInput );
+    formContainer.appendChild( submit );
+    container.appendChild( formContainer );
+    parentContainer.appendChild(container);
+    NewTab.linkListener();
+}
+
+NewTab.linkListener = function() {
+    newLinkButton = document.querySelector( ".add--link-submit" );
+    newLinkButton.addEventListener( "click", function() {
+
+        var nameElement = document.querySelector( ".add--link-name" );
+        var addressElement = document.querySelector( ".add--link-address" );
+
+        var inputLink = new NewTab.Link( nameElement.value, addressElement.value );
+
+        NewTab.targetLinks( inputLink );
+        NewTab.currentLinks.push( inputLink );
+        NewTab.saveLinks();
+
+        this.parentNode.removeChild( "form" );
+        this.parentNode.removeChild( document.querySelector( "link--item" ) );
+    }, false );
+}
+
+var editButton = document.querySelector( ".edit" );
+editButton.addEventListener( "click", function() {
+    NewTab.newLinkInput();
+})
+
+
+var clearAllLinksButton = document.querySelector( ".clear--all-links" );
+clearAllLinksButton.addEventListener( "click", function() {
+    // TODO: Replace window.confirm
+    // Remove all Links on confirmation
+    if ( window.confirm( "This action will remove ALL saved links. Continue?" ) ) {
+            NewTab.currentLinks = undefined;
+            NewTab.saveLinks();
+            NewTab.renderLinks();
+    }
+} );
 
 NewTab.init = function() {
-    NewTab.renderLinks(  );
+    NewTab.renderLinks();
 }
 
 window.onload = NewTab.init;

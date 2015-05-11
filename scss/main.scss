@@ -47,12 +47,12 @@ $time-margins     : 4% auto 0 auto;
  * ----------------------{{{
  */
 
-$date-font        : $time-font;
-$date-font_size   : 3.75rem;
+$date-font              : $time-font;
+$date-font_size         : 3.75rem;
 $date-font_default_size : $date-font_size;
-$date-font_weight : bold;
-$date-color       : $time-color;
-$date-text_shadow : 3px 3px rgba(0,0,0,.3);
+$date-font_weight       : bold;
+$date-color             : $time-color;
+$date-text_shadow       : 3px 3px rgba(0,0,0,.3);
 
 // }}}
 
@@ -74,8 +74,8 @@ $link-font_weight : bold;
 $link-text_shadow : 4px 3px rgba(0,0,0,.3);
 
 /* Sublink Variables --------*/
-$sublink-padding_left: 20px;
-$sublink-font_weight: normal;
+$sublink-padding_left : 20px;
+$sublink-font_weight  : normal;
 
 // }}}
 
@@ -99,13 +99,13 @@ $sublink-font_weight: normal;
 
 html {
     // Set font size for REM use. Roughly 1rem = 10px
-    font-size: $global--html-font_size;
+    font-size : $global--html-font_size;
 }
 
 a {
     // Get rid of dotted outline on click
-    outline: $global--link_outline;
-    text-decoration: $global--link_deco;
+    outline         : $global--link_outline;
+    text-decoration : $global--link_deco;
 }
 
 body {
@@ -206,19 +206,32 @@ body {
         }
     }
 
-    a {
+    a, input {
         color           : $link-color;
         font-family     : $link-font;
         font-size       : $link-font_size;
         text-shadow     : $link-text_shadow;
         font-weight     : $link-font_weight;
+        background: none;
+        box-shadow: none;
+
         // transition      : .1s all;
 
+    }
+
+    a {
         &:hover, &:active, &:focus {
             color         : $blue;
             border-bottom : 3px solid $blue;
             transition    : .25s color, .1s border;
         }
+    }
+
+    input {
+        background: none;
+        border: none;
+        box-shadow: none;
+        border-bottom: 5px solid $red;
     }
 }
 
@@ -234,3 +247,5 @@ ul.sublink {
         font-weight : $sublink-font_weight;
     }
 }
+
+// }}}

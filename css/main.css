@@ -115,16 +115,23 @@ body {
       .links .link--item {
         display: block;
         text-align: center; } }
-  .links a {
+  .links a, .links input {
     color: #FF2E4C;
     font-family: "Office Code Pro", "Lato", "Arial", sans-serif;
     font-size: 2.5em;
     text-shadow: 4px 3px rgba(0, 0, 0, 0.3);
-    font-weight: bold; }
-    .links a:hover, .links a:active, .links a:focus {
-      color: #2EB9FF;
-      border-bottom: 3px solid #2EB9FF;
-      transition: 0.25s color, 0.1s border; }
+    font-weight: bold;
+    background: none;
+    box-shadow: none; }
+  .links a:hover, .links a:active, .links a:focus {
+    color: #2EB9FF;
+    border-bottom: 3px solid #2EB9FF;
+    transition: 0.25s color, 0.1s border; }
+  .links input {
+    background: none;
+    border: none;
+    box-shadow: none;
+    border-bottom: 5px solid #FF2E4C; }
 
 .curspo > * {
   cursor: default; }
