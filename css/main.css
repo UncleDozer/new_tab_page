@@ -17,7 +17,8 @@ body {
   margin-right: auto;
   font-size: 15em;
   font-weight: bolder;
-  text-shadow: 0px 15px rgba(0, 0, 0, 0.3);
+  text-shadow: 0px 3px 3px #006699;
+  text-shadow: 0px -2px 0px #8ad8ff, 0px 2px 1px #006699, 0px 4px 0.5px #005f8f, 0px 6px 0.5px #005885, 0px 8px 0.5px #00517b, 3px 8px 15px rgba(0, 0, 0, 0.1), 3px 8px 5px rgba(0, 0, 0, 0.3);
   font-family: "Office Code Pro", "Lato", "Arial", sans-serif;
   text-align: center; }
   @media only screen and (max-width: 1200px) {
@@ -30,7 +31,7 @@ body {
     display: inline-flex;
     margin-left: auto;
     margin-right: auto;
-    width: 100%/3;
+    width: 100% / 3;
     text-align: initial; }
 
 .date {

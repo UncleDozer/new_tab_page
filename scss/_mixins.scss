@@ -1,0 +1,18 @@
+@mixin threeD( $color, $textShadow: true ) {
+    $fallback: 0px 3px 3px darken( $color, 2% );
+    $shadowVal: 0px -2px 0px lighten( $color, 45% ),
+    0px 2px 1px darken( $color, 2% ),
+    0px 4px .5px darken( $color, 4% ),
+    0px 6px .5px darken( $color, 6% ),
+    0px 8px .5px darken( $color, 8% ),
+    3px 8px 15px rgba( black, 0.1 ),
+    3px 8px 5px rgba( black, 0.3 );
+
+    @if $textShadow == true {
+        text-shadow: $fallback;
+        text-shadow: $shadowVal;
+    } @else {
+        box-shadow: $fallback;
+        box-shadow: $shadowVal;
+    }
+}
