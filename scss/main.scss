@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * Global Variables / Reset
  * ----------------------{{{
@@ -91,6 +92,19 @@ $sublink-font_weight  : normal;
  * Global Styles
  * ----------------------{{{
  */
+=======
+@import 'mixins';
+$bg        : #1a1a1a;
+$fg        : #2EB9FF;
+$red       : #FF2E4C;
+$green     : #A1FF7A;
+$time-font : "Office Code Pro", "Lato", "Arial", sans-serif;
+$date-font : $time-font;
+$link-font : $time-font;
+$link-size : 1.5em;
+$time-size : 15em;
+$date-size : 3em;
+>>>>>>> master
 
 * {
     // Set border-box for better sizing
@@ -122,12 +136,22 @@ body {
 
 .time {
     display     : block;
+<<<<<<< HEAD
     position    : relative;
     width       : $time-width;
     margin      : $time-margins;
     color       : $time-color;
     font-size   : $time-font_size;
     font-weight : $time-font_weight;
+=======
+    width       : 100%;
+    margin-top  : 5%;
+    margin-left : auto; margin-right: auto;
+    font-size   : $time-size;
+    font-weight : bolder;
+    // text-shadow : 0px 15px rgba(0,0,0,.3);
+    @include threeD( darken( $fg, 27% ) );
+>>>>>>> master
     font-family : $time-font;
     text-shadow : $time-text_shadow;
     text-align  : center;
@@ -209,12 +233,19 @@ body {
     a, input {
         color           : $link-color;
         font-family     : $link-font;
+<<<<<<< HEAD
         font-size       : $link-font_size;
         text-shadow     : $link-text_shadow;
         font-weight     : $link-font_weight;
         background: none;
         box-shadow: none;
 
+=======
+        font-size       : $link-size;
+        text-shadow     : 4px 3px rgba(0,0,0,.3);
+        font-weight     : bold;
+        // transition: .25s color, .1s border;
+>>>>>>> master
         // transition      : .1s all;
 
     }
